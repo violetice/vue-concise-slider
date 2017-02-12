@@ -20,19 +20,19 @@
 <div>
 	<slider :pages="someList" :sliderinit="sliderinit" @slide='slide'>
     <!-- slot  -->
-    </slider>
+  </slider>
   <div class="sliderButton">
   <button @click="slidePre">上一页</button>
   <button @click="slideNext">下一页</button>
   <button @click="appendslider">添加一页</button>
   <button @click="turnTo(2)">跳转到第三页</button>
   </div>
-</div>
+    </div>
 </template>
 <script>
 import slider from './slider'
 export default {
-	 el: '#sliderbasicloop',
+	 el: '#slidervariableWidth',
 	 data () {
         return {
             someList:[
@@ -40,27 +40,34 @@ export default {
                     title: 'slide1',
                     style:{
                          'background':'#1bbc9b',
+                         'width':'80%',
+                         'margin-right':'20px'
                     },
                 },
                 {
                     title: 'slide2',
                     style:{
                          'background':'#4bbfc3',
+                         'width':'60%',
+                         'margin-right':'20px'
                     },
                 },
                 {
                     title: 'slide3',
                     style:{
                          'background':'#7baabe',
+                         'width':'40%',
+                         'margin-right':'20px'
                     },
                 }
             ],
             sliderinit: {
                 currentPage: 1,
                 tracking: false,
-                thresholdTime: 500,//滑动判定时间
-                thresholdDistance: 100,//滑动判定距离
-                loop:true,//无限循环
+                thresholdTime: 500,//滑动判定距离
+                thresholdDistance: 100,//滑动判定时间
+                // 不定宽度的无限循环感觉很丑:(
+                // loop:true,//无限循环
                 // autoplay:1000,//自动播放:时间[ms]
             }
         }
@@ -89,10 +96,10 @@ export default {
                 }
             });
         },
-        //
+         // 监听事件也发生了变化,需要指向一个子组件实例
         slide(pagenum){
-            console.log(pagenum);
+            console.log('currentPage:'+pagenum);
         }
-    },
+    }
 }
 </script>
