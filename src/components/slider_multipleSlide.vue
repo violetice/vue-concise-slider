@@ -107,7 +107,7 @@ export default {
                 thresholdTime: 500,//滑动判定距离
                 thresholdDistance: 100,//滑动判定时间
                 infinite:4,//多级滚动时，需要添加前后遍历数
-                slidesToScroll:2,//需要滚动页面的数量
+                slidesToScroll:4,//需要滚动页面的数量
                 loop:true,//无限循环
                 // autoplay:1000,//自动播放:时间[ms]
             }

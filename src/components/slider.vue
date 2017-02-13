@@ -229,7 +229,7 @@ export default {
    		  pagenums: function(){
    		   	return this.pages.length
    		  },
-        // 组件的核心，计算当前父级需要进行的偏移,每次要遍历节点,应该直接储存节点，提高性能
+        // 组件的核心，计算当前父级需要进行的偏移,每次要遍历节点
         currentWidth:{
           get:function(){
             let $slider;
