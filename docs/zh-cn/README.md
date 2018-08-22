@@ -35,11 +35,7 @@ vue-concise-slider是一个简单的Vue滑动组件,配置简单,支持自适应
 
 <script v-pre type="text/x-template" id="example">
   <template>
-<<<<<<< HEAD
     <slider :pages="pages" :sliderinit="sliderinit">
-=======
-    <slider ref="slider" :pages="pages" :sliderinit="sliderinit">
->>>>>>> master
     <!-- slot  -->
     </slider>
   </template>

@@ -11,11 +11,7 @@ See the [Quick start](#Quick start) for more details
 ## Features
 
 * Simple configuration
-<<<<<<< HEAD
 * Simple and lightweight (~17kB gzipped)
-=======
-* Simple and lightweight (~23kB gzipped)
->>>>>>> master
 * Multiple sliding effects
 
 ## Install
@@ -39,11 +35,7 @@ You can be submitted here, and i will be dealt with as soon as possible:https://
 
 <script v-pre type="text/x-template" id="example">
   <template>
-<<<<<<< HEAD
     <slider :pages="pages" :sliderinit="sliderinit">
-=======
-    <slider ref="slider" :pages="pages" :sliderinit="sliderinit">
->>>>>>> master
     <!-- slot  -->
     </slider>
   </template>

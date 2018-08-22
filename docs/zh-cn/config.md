@@ -57,35 +57,6 @@
    }
   }
 ```
-<<<<<<< HEAD
-=======
-### component
-
-- 类型：`object`
-- 默认值：`null`
-
-对每页page的扩展，可以自定义component模板，支持传入props
-* item : 每项pages
-* sliderinit: slider配置
-* pages: 滑动列表
-
-```html
-  {
-    component: {
-      props: ['item', 'sliderinit', 'pages'],
-      data () {
-        return {
-          img: 'src/img/testimg-1.jpg'
-        }
-      },
-      mounted () {
-        console.log(this.item)
-      },
-      template: '<div><img style="width: 100%" :src="img" /><p style="position: absolute; margin: 0; right: 10px; bottom: 10px; font-size: 16px;">test1</p></div>'
-    }
-  }
-```
->>>>>>> master
 
 ## sliderinit
 
@@ -106,21 +77,6 @@
     slidesToScroll:1,//每次滑动项数
   }
 ```
-<<<<<<< HEAD
-=======
-### effect
-
-- 类型：`string`
-- 默认值：`fade`
-
-切换效果，默认为滚动滑动('slide'),可设置为渐变滑动('fade'),旋转滚动('coverflow')
-
-```html
-  {
-    effect:'slide'
-  }
-```
->>>>>>> master
 
 ### direction
 
@@ -151,42 +107,26 @@
 ### thresholdDistance
 
 - 类型：`number`
-<<<<<<< HEAD
 - 默认值：`null`
-=======
-- 默认值：`100`
->>>>>>> master
 
 触发滑动的距离阈值
 
 ```html
   {
-<<<<<<< HEAD
     thresholdDistance:''
-=======
-    thresholdDistance:'100'
->>>>>>> master
   }
 ```
 
 ### thresholdTime
 
 - 类型：`number`
-<<<<<<< HEAD
 - 默认值：`null`
-=======
-- 默认值：`500`
->>>>>>> master
 
 触发滑动的时间阈值
 
 ```html
   {
-<<<<<<< HEAD
     thresholdTime:''
-=======
-    thresholdTime:'500'
->>>>>>> master
   }
 ```
 
@@ -199,11 +139,7 @@
 
 ```html
   {
-<<<<<<< HEAD
     autoplay:''
-=======
-    autoplay:'1000'
->>>>>>> master
   }
 ```
 
@@ -282,45 +218,6 @@ loop设置为true时,设置前后复制页面的数量
     timingFunction: 'ease'
   }
 ```
-<<<<<<< HEAD
-=======
-### widthScalingRatio
-
-- 类型：`string`
-- 默认值：`0.8`
-
-coverflow模式下配置宽度比例缩放,范围0~1
-
-```html
-  {
-    widthScalingRatio: '0.8'
-  }
-```
-### heightScalingRatio
-
-- 类型：`string`
-- 默认值：`0.8`
-
-coverflow模式下配置高度比例缩放,范围0~1
-
-```html
-  {
-    heightScalingRatio: '0.8'
-  }
-```
-### deviation
-
-- 类型：`string`
-- 默认值：`200`
-
-coverflow模式下配置滑动项偏移
-
-```html
-  {
-    deviation: '200'
-  }
-```
->>>>>>> master
 ## 传递的事件
 
 ### slideTo
@@ -331,11 +228,7 @@ coverflow模式下配置滑动项偏移
 
 ```html
   slideTo () {
-<<<<<<< HEAD
     this.$children[0].$emit('slideTo', num)
-=======
-    this.$refs.slider.$emit('slideTo', num)
->>>>>>> master
   }
 
 ```
@@ -347,11 +240,7 @@ coverflow模式下配置滑动项偏移
 
 ```html
   slideNext () {
-<<<<<<< HEAD
     childComponents.$emit('slideNext')
-=======
-    this.$refs.slider.$emit('slideNext')
->>>>>>> master
   }
 
 ```
@@ -364,11 +253,7 @@ coverflow模式下配置滑动项偏移
 
 ```html
   slide () {
-<<<<<<< HEAD
     childComponents.$emit('slidePre')
-=======
-    this.$refs.slider.$emit('slidePre')
->>>>>>> master
   }
 
 ```
@@ -380,11 +265,7 @@ coverflow模式下配置滑动项偏移
 开启定时轮播,设置轮播时长
 
 ```html
-<<<<<<< HEAD
   childComponents.$emit('autoplayStart',1000)
-=======
-  this.$refs.slider.$emit('autoplayStart',1000)
->>>>>>> master
 ```
 
 ### autoplayStop
@@ -394,11 +275,7 @@ coverflow模式下配置滑动项偏移
 暂停定时轮播
 
 ```html
-<<<<<<< HEAD
   childComponents.$emit('autoplayStop')
-=======
-  this.$refs.slider.$emit('autoplayStop')
->>>>>>> master
 ```
 ## 监听的事件
 
