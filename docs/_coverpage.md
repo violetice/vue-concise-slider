@@ -2,7 +2,11 @@
 
 > A simple vue sliding component
 
+<<<<<<< HEAD
 - Simple and lightweight (~17kB gzipped)
+=======
+- Simple and lightweight (~24kB gzipped)
+>>>>>>> master
 - Multiple sliding effects
 - Simple configuration
 

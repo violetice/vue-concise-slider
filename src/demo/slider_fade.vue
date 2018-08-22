@@ -4,11 +4,7 @@
 <template>
   <div>
     <div style="width:70%;margin:20px auto;height:400px">
-<<<<<<< HEAD
-      <slider :pages="someList" :sliderinit="sliderinit" @slide='slide' @tap='onTap' @init='onInit'>
-=======
       <slider ref="slider" :pages="someList" :sliderinit="sliderinit" @slide='slide' @tap='onTap' @init='onInit'>
->>>>>>> master
         <div slot="loading">
           <div class="loadingDot">
             <i></i>
@@ -20,14 +16,6 @@
       </slider>
     </div>
     <div class="sliderButton">
-<<<<<<< HEAD
-      <button @click="slidePre">上一页</button>
-      <button @click="slideNext">下一页</button>
-      <button @click="appendslider">添加一页</button>
-      <button @click="turnTo(2)">跳转到第三页</button>
-      <button @click="autoplayStart">启动自动滚动</button>
-      <button @click="autoplayStop">停止自动滚动</button>
-=======
       <button @click="slidePre">上一页/pre</button>
       <button @click="slideNext">下一页/next</button>
       <button @click="appendslider">添加一页/append</button>
@@ -36,36 +24,33 @@
       <button @click="autoplayStop">停止自动滚动/autoplayStop</button>
       <button @click="loadingShow">loading显示/loadingShow</button>
       <button @click="loadingHide">loading关闭/loadingHide</button>
->>>>>>> master
     </div>
   </div>
 </template>
 <script>
 import slider from '../components/slider'
 export default {
-  el: '#sliderbasicloop',
+  el: '#sliderfade',
   data () {
     return {
       someList: [],
       sliderinit: {
-        currentPage: 1,
-        tracking: false,
-        thresholdDistance: 100, // 滑动距离阈值判定
-        thresholdTime: 300, // 滑动时间阈值判定
+        effect: 'fade',
+        // thresholdDistance: 100, // 滑动距离阈值判定
+        // thresholdTime: 300, // 滑动时间阈值判定
+        // duration: 300, // 滑动速度
+        // timingFunction: 'ease', // 滑动方式
         loop: true // 无限循环
-        // autoplay:1000,//自动播放:时间[ms]
+        // autoplay: 0 // 自动播放:时间[ms]
       }
     }
-  },
-  components: {
-    slider
   },
   mounted () {
     let that = this
     setTimeout(function () {
       that.someList = [
         {
-          html: '<div class="slide1">slide1</div>',
+          html: 'slide1',
           style: {
             'background': '#1bbc9b'
           }
@@ -73,39 +58,24 @@ export default {
         {
           html: 'slide2',
           style: {
-            'background': '#4bbfc3'
+            background: '#4bbfc3'
           }
         },
         {
           html: 'slide3',
           style: {
-            'background': '#7baabe'
+            background: '#333'
           }
         }
       ]
     }, 2000)
   },
+  components: {
+    slider
+  },
   methods: {
     turnTo (num) {
       // 传递事件 vue 2.0 传递事件修改了，好的写法应该直接写在空vue类中
-<<<<<<< HEAD
-      this.$children[0].$emit('slideTo', num)
-    },
-    slideNext () {
-      this.$children[0].$emit('slideNext')
-      // slider.$emit('slideNext')
-    },
-    slidePre () {
-      this.$children[0].$emit('slidePre')
-      // slider.$emit('slidePre')
-    },
-    autoplayStart () {
-      this.$children[0].$emit('autoplayStart')
-      // slider.$emit('slidePre')
-    },
-    autoplayStop () {
-      this.$children[0].$emit('autoplayStop')
-=======
       this.$refs.slider.$emit('slideTo', num)
     },
     slideNext () {
@@ -122,7 +92,14 @@ export default {
     },
     autoplayStop () {
       this.$refs.slider.$emit('autoplayStop')
->>>>>>> master
+      // slider.$emit('slidePre')
+    },
+    loadingShow () {
+      this.$refs.slider.$emit('loadingShow')
+      // slider.$emit('slidePre')
+    },
+    loadingHide () {
+      this.$refs.slider.$emit('loadingHide')
       // slider.$emit('slidePre')
     },
     appendslider () {
@@ -134,17 +111,6 @@ export default {
         }
       })
     },
-<<<<<<< HEAD
-=======
-    loadingShow () {
-      this.$refs.slider.$emit('loadingShow')
-      // slider.$emit('slidePre')
-    },
-    loadingHide () {
-      this.$refs.slider.$emit('loadingHide')
-      // slider.$emit('slidePre')
-    },
->>>>>>> master
     // 监听事件发生了变化,需要指向一个子组件实例
     slide (data) {
       console.log(data)

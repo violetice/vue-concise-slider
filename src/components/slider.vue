@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div class='slider-container' :class = 'temporaryData.containerClass'>
       <div class='slider-touch'
       :style="styleobj"
@@ -8,11 +9,26 @@
       @mousedown="swipeStart"
       @mouseup="swipeEnd"
       @mousemove="swipeMove"
+=======
+    <div class='slider-container' :class = 'temporaryData.containerClass' @mouseleave="swipeOut">
+      <div class='slider-touch'
+      :style="styleobj"
+      @touchmove.stop.capture.prevent="swipeMove"
+      @touchstart.stop.capture.prevent="swipeStart"
+      @touchend.stop.capture.prevent="swipeEnd"
+      @mousedown.stop.capture.prevent="swipeStart"
+      @mouseup.stop.capture.prevent="swipeEnd"
+      @mousemove.stop.capture.prevent="swipeMove"
+>>>>>>> master
       @webkit-transition-end="onTransitionEnd"
       @transitionend="onTransitionEnd"
       >
       <!-- 组件在 vm.currentview 变化时改变！ -->
+<<<<<<< HEAD
       <component :pages="pages" :sliderinit="sliderinit" v-bind:is="currentView"></component>
+=======
+      <component :pages="pages" :sliderinit="sliderinit" :basicdata="basicdata" :temporarydata="temporaryData" v-bind:is="currentView"></component>
+>>>>>>> master
       </div>
       <div class="slider-pagination slider-pagination-bullets">
         <template v-for="n in pagenums">
@@ -24,11 +40,19 @@
       </div>
     </div>
 </template>
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 <script>
 import detectPrefixes from '../utils/detect-prefixes.js'
 import sliderBasic from './slider_basic.vue'
 import sliderBasicLoop from './slider_basic_loop.vue'
+<<<<<<< HEAD
+=======
+import sliderFade from './slider_fade.vue'
+import sliderCoverflow from './slider_coverflow.vue'
+>>>>>>> master
 export default {
   props: ['sliderinit', 'pages'],
   data () {
@@ -38,19 +62,41 @@ export default {
         posheight: '0',
         start: {},
         end: {},
+<<<<<<< HEAD
         currentPage: this.sliderinit.currentPage || 0
+=======
+        currentPage: this.sliderinit.currentPage || 0,
+        direction: ''
+>>>>>>> master
       },
       temporaryData: {
         prefixes: detectPrefixes(),
         transitionEnding: false,
         setIntervalid: '',
+<<<<<<< HEAD
         tracking: false,
+=======
+        effect: this.sliderinit.effect || 'slide',
+        tracking: false,
+        thresholdDistance: this.sliderinit.thresholdDistance || 100,
+        thresholdTime: this.sliderinit.thresholdTime || 500,
+>>>>>>> master
         animation: false,
         loading: false,
         containerClass: {
           'swiper-container-vertical': false
         },
+<<<<<<< HEAD
         pageInit: false
+=======
+        pageInit: false,
+        widthScalingRatio: this.sliderinit.widthScalingRatio || 0.8,
+        heightScalingRatio: this.sliderinit.heightScalingRatio || 0.8,
+        deviation: this.sliderinit.deviation || 200,
+        currentPage: this.sliderinit.currentPage || 0,
+        pageWidth: 0,
+        pageHeight: 0
+>>>>>>> master
       }
     }
   },
@@ -61,6 +107,12 @@ export default {
       style['transform'] = 'translate3D(' + this.basicdata.poswidth + ',' + this.basicdata.posheight + ',0)'
       style[this.temporaryData.prefixes.transition + 'TimingFunction'] = this.sliderinit.timingFunction || 'ease'
       style[this.temporaryData.prefixes.transition + 'Duration'] = (this.temporaryData.animation ? this.sliderinit.duration || 300 : 0) + 'ms'
+<<<<<<< HEAD
+=======
+      if (this.temporaryData.effect === 'fade' || this.temporaryData.effect === 'coverflow') {
+        return {}
+      }
+>>>>>>> master
       return style
     },
     // pagenum滑动数
@@ -74,16 +126,36 @@ export default {
       return this.pages.length
     },
     currentView: function () {
+<<<<<<< HEAD
       return this.sliderinit.loop ? 'basicLoop' : 'basic'
+=======
+      if (this.temporaryData.effect === 'slide') {
+        return this.sliderinit.loop ? 'basicLoop' : 'basic'
+      }
+      if (this.temporaryData.effect === 'fade') {
+        return this.sliderinit.loop ? 'fadeLoop' : 'fade'
+      }
+      if (this.temporaryData.effect === 'coverflow') {
+        return this.sliderinit.loop ? 'coverflow' : 'coverflow'
+      }
+>>>>>>> master
     },
     // 组件的核心，计算当前父级需要进行的偏移,每次要遍历节点
     currentWidth: {
       get: function () {
+<<<<<<< HEAD
         if (!this.pagenums) {
+=======
+        if (!this.pages.length || this.temporaryData.effect === 'fade' || this.temporaryData.effect === 'coverflow') {
+>>>>>>> master
           return 0
         }
         let $slider
         let lastPage = this.basicdata.currentPage
+<<<<<<< HEAD
+=======
+        let pageWidth = this.temporaryData.pageWidth
+>>>>>>> master
         // let srollbar = false
         if (this.sliderinit.loop) {
           if (this.sliderinit.infinite) {
@@ -92,6 +164,12 @@ export default {
             lastPage = this.basicdata.currentPage + 1
           }
         }
+<<<<<<< HEAD
+=======
+        if (this.sliderinit.effect === 'coverflow') {
+          lastPage -= 1
+        }
+>>>>>>> master
         // 获取slideritem子集
         for (let item in this.$el.children) {
           if (/slider-touch/ig.test(this.$el.children[item].className)) {
@@ -104,6 +182,7 @@ export default {
         if (this.sliderinit.loop) {
           offsetLeft = $sliderChildren[lastPage].offsetLeft
         }
+<<<<<<< HEAD
         return offsetLeft
       },
       set: function (value) {
@@ -112,11 +191,22 @@ export default {
     },
     currentHeight: function () {
       if (!this.pages.length) {
+=======
+        return offsetLeft + pageWidth - pageWidth
+      }
+    },
+    currentHeight () {
+      if (!this.pages.length || this.temporaryData.effect === 'fade') {
+>>>>>>> master
         return 0
       }
       let posheight = 0
       let $slider
       let lastPage = this.basicdata.currentPage - 1
+<<<<<<< HEAD
+=======
+      let pageWidth = this.temporaryData.pageWidth
+>>>>>>> master
       // let srollbar = false
       if (this.sliderinit.loop) {
         if (this.sliderinit.infinite) {
@@ -141,11 +231,20 @@ export default {
           posheight += parseInt($sliderChildren[item].style.marginBottom || 0)
         }
       }
+<<<<<<< HEAD
       return posheight
+=======
+      return posheight + pageWidth - pageWidth
+>>>>>>> master
     }
   },
   mounted () {
     let that = this
+<<<<<<< HEAD
+=======
+    this.temporaryData.pageWidth = this.$el.offsetWidth
+    this.temporaryData.pageHeight = this.$el.offsetHeight
+>>>>>>> master
     // 初始化事件
     this.$emit('init', this.basicdata)
     // 定制事件
@@ -180,6 +279,15 @@ export default {
     if (this.sliderinit.direction === 'vertical') {
       this.temporaryData.containerClass['swiper-container-vertical'] = true
     }
+<<<<<<< HEAD
+=======
+    // 添加reszie监听
+    window.addEventListener('resize', () => {
+      that.temporaryData.pageWidth = that.$el.offsetWidth
+      that.temporaryData.pageHeight = that.$el.offsetHeight
+      that.slide(that.basicdata.currentPage, 'animationnone')
+    })
+>>>>>>> master
   },
   methods: {
     swipeStart (e) {
@@ -222,11 +330,19 @@ export default {
     swipeMove (e) {
       if (this.temporaryData.tracking) {
         if (e.type === 'touchmove') {
+<<<<<<< HEAD
           e.preventDefault()
           this.basicdata.end.x = e.targetTouches[0].clientX
           this.basicdata.end.y = e.targetTouches[0].clientY
         } else {
           e.preventDefault()
+=======
+          // e.preventDefault()
+          this.basicdata.end.x = e.targetTouches[0].clientX
+          this.basicdata.end.y = e.targetTouches[0].clientY
+        } else {
+          // e.preventDefault()
+>>>>>>> master
           this.basicdata.end.x = e.clientX
           this.basicdata.end.y = e.clientY
         }
@@ -234,6 +350,12 @@ export default {
           this.basicdata.posheight = -(this.currentHeight) + this.basicdata.end.y - this.basicdata.start.y + 'px'
           return
         }
+<<<<<<< HEAD
+=======
+        if (this.temporaryData.effect === 'fade' || this.temporaryData.effect === 'coverflow') {
+          return
+        }
+>>>>>>> master
         this.basicdata.poswidth = -(this.currentWidth) + this.basicdata.end.x - this.basicdata.start.x + 'px'
       }
     },
@@ -253,16 +375,28 @@ export default {
       // 解除阻止
       document.removeEventListener('touchmove', this.preventDefault(e))
       /* work out what the movement was */
+<<<<<<< HEAD
       if (deltaTime > this.sliderinit.thresholdTime) {
+=======
+      if (deltaTime > this.temporaryData.thresholdTime) {
+>>>>>>> master
         this.slide(this.basicdata.currentPage)
         /* gesture too slow */
         return
       } else if (this.sliderinit.direction !== 'vertical') {
+<<<<<<< HEAD
         if ((deltaX > this.sliderinit.thresholdDistance) && (Math.abs(deltaY) < this.sliderinit.thresholdDistance)) {
           // swipe right
           this.pre()
           return
         } else if ((-deltaX > this.sliderinit.thresholdDistance) && (Math.abs(deltaY) < this.sliderinit.thresholdDistance)) {
+=======
+        if ((deltaX > this.temporaryData.thresholdDistance) && (Math.abs(deltaY) < this.temporaryData.thresholdDistance)) {
+          // swipe right
+          this.pre()
+          return
+        } else if ((-deltaX > this.temporaryData.thresholdDistance) && (Math.abs(deltaY) < this.temporaryData.thresholdDistance)) {
+>>>>>>> master
           // swipe left
           this.next()
           return
@@ -277,11 +411,19 @@ export default {
         }
         // 垂直判定
       } else {
+<<<<<<< HEAD
         if ((deltaY > this.sliderinit.thresholdDistance) && (Math.abs(deltaX) < this.sliderinit.thresholdDistance)) {
           // swipe right
           this.pre()
           return
         } else if ((-deltaY > this.sliderinit.thresholdDistance) && (Math.abs(deltaX) < this.sliderinit.thresholdDistance)) {
+=======
+        if ((deltaY > this.temporaryData.thresholdDistance) && (Math.abs(deltaX) < this.temporaryData.thresholdDistance)) {
+          // swipe right
+          this.pre()
+          return
+        } else if ((-deltaY > this.temporaryData.thresholdDistance) && (Math.abs(deltaX) < this.temporaryData.thresholdDistance)) {
+>>>>>>> master
           // swipe left
           this.next()
           return
@@ -294,27 +436,59 @@ export default {
         }
       }
     },
+<<<<<<< HEAD
     pre () {
+=======
+    swipeOut (e) {
+      if (this.$el === e.target) {
+        this.swipeEnd(e)
+      }
+    },
+    pre () {
+      this.basicdata.direction = 'left'
+>>>>>>> master
       if (this.basicdata.currentPage >= 1) {
         this.basicdata.currentPage -= this.sliderinit.slidesToScroll || 1
         this.slide()
       } else if (this.sliderinit.loop && this.basicdata.currentPage === 0) {
         this.basicdata.currentPage -= this.sliderinit.slidesToScroll || 1
         this.temporaryData.transitionEnding = true
+<<<<<<< HEAD
         this.slide()
+=======
+        if (this.basicdata.currentPage < 0 && this.temporaryData.effect === 'fade') {
+          this.slide(this.pagenums - 1)
+          this.temporaryData.transitionEnding = false
+        } else {
+          this.slide()
+        }
+>>>>>>> master
       } else {
         this.slide()
       }
       this.$emit('slide', this.basicdata)
     },
     next () {
+<<<<<<< HEAD
+=======
+      this.basicdata.direction = 'right'
+>>>>>>> master
       if (this.basicdata.currentPage < this.pagenums - 1) {
         this.basicdata.currentPage += this.sliderinit.slidesToScroll || 1
         this.slide()
       } else if (this.sliderinit.loop && this.basicdata.currentPage === this.pagenums - 1) {
         this.basicdata.currentPage += this.sliderinit.slidesToScroll || 1
         this.temporaryData.transitionEnding = true
+<<<<<<< HEAD
         this.slide()
+=======
+        if (this.basicdata.currentPage >= this.pagenums && this.temporaryData.effect === 'fade') {
+          this.slide(0)
+          this.temporaryData.transitionEnding = false
+        } else {
+          this.slide()
+        }
+>>>>>>> master
       } else {
         this.slide()
       }
@@ -331,6 +505,7 @@ export default {
       if (pagenum || pagenum === 0) {
         that.basicdata.currentPage = pagenum
       }
+<<<<<<< HEAD
       // 增加垂直滚动判定
       if (that.sliderinit.direction === 'vertical') {
         that.basicdata.posheight = -that.currentHeight + 'px'
@@ -338,6 +513,19 @@ export default {
         that.basicdata.poswidth = -that.currentWidth + 'px'
       }
       // 广播事件
+=======
+      if (this.temporaryData.effect === 'fade') {
+        return
+      } else {
+        // 增加垂直滚动判定
+        if (that.sliderinit.direction === 'vertical') {
+          that.basicdata.posheight = -that.currentHeight + 'px'
+        } else {
+          that.basicdata.poswidth = -that.currentWidth + 'px'
+        }
+      }
+      //
+>>>>>>> master
       if (that.basicdata.currentPage < 0 || that.basicdata.currentPage >= that.pagenums) {
         return
       }
@@ -371,7 +559,11 @@ export default {
     onTransitionEnd () {
       var that = this
       setTimeout(function () {
+<<<<<<< HEAD
         if (that.sliderinit.loop) {
+=======
+        if (that.sliderinit.loop && that.temporaryData.effect !== 'fade') {
+>>>>>>> master
           that.temporaryData.transitionEnding = false
           if (that.basicdata.currentPage < 0) {
             that.slide(that.pagenums + that.basicdata.currentPage, 'animationnone')
@@ -384,7 +576,14 @@ export default {
   },
   components: {
     basic: sliderBasic,
+<<<<<<< HEAD
     basicLoop: sliderBasicLoop
+=======
+    basicLoop: sliderBasicLoop,
+    fade: sliderFade,
+    fadeLoop: sliderFade,
+    coverflow: sliderCoverflow
+>>>>>>> master
   }
 }
 </script>
@@ -422,6 +621,10 @@ export default {
   transition-property: transform;
   width: 100%;
   z-index: 1;
+<<<<<<< HEAD
+=======
+  align-items: center;
+>>>>>>> master
 }
 /*垂直*/
 .swiper-container-vertical  .slider-wrapper{
@@ -444,7 +647,11 @@ export default {
 }
 .slider-item {
   align-items: center;
+<<<<<<< HEAD
   background: #fff none repeat scroll 0 0;
+=======
+  /*background: #fff none repeat scroll 0 0;*/
+>>>>>>> master
   display: flex;
   font-size: 40px;
   justify-content: center;
@@ -500,6 +707,10 @@ export default {
   position:absolute;
   top:50%;
   transform: translateY(-50%);
+<<<<<<< HEAD
+=======
+  z-index: 999
+>>>>>>> master
 }
 .slider-button-next, .slider-button-prev {
   background-position: center center;
@@ -525,11 +736,20 @@ export default {
   right: 10px;
 }
 /*移动端优化*/
+<<<<<<< HEAD
  @media screen and (max-width:414px) {
+=======
+ /*@media screen and (max-width:414px) {
+>>>>>>> master
   .slider-container {
   height: 200px;
   margin: 20px auto;
   width: 90%;
+<<<<<<< HEAD
   }
 }
+=======
+  }*/
+/*}*/
+>>>>>>> master
 </style>
