@@ -8,6 +8,11 @@ var webpack = require('webpack')
 // var vue = require("vue-loader")
 
 module.exports = {
+  devtool: process.env.NODE_ENV === 'production' ? '' : 'inline-source-map',
+  devServer: { // 检测代码变化并自动重新编译并自动刷新浏览器
+    contentBase: path.resolve(__dirname, 'dist'), // 设置静态资源的根目录
+    hot: true
+  },
   entry: {
     module: './src/exportModule.js',
     build: './src/main.js'
