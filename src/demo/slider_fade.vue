@@ -30,31 +30,27 @@
 <script>
 import slider from '../components/slider'
 export default {
-  el: '#slidervertical',
+  el: '#sliderfade',
   data () {
     return {
       someList: [],
       sliderinit: {
-        currentPage: 1,
-        tracking: false,
-        thresholdDistance: 100, // 滑动距离阈值判定
-        thresholdTime: 300, // 滑动时间阈值判定
-        direction: 'vertical', // 垂直滚动
-        loop: true, // 无限循环
-        infinite: 4
-        // autoplay:1000 // 自动播放:时间[ms]
+        effect: 'fade',
+        // thresholdDistance: 100, // 滑动距离阈值判定
+        // thresholdTime: 300, // 滑动时间阈值判定
+        // duration: 300, // 滑动速度
+        // timingFunction: 'ease', // 滑动方式
+        loop: true // 无限循环
+        // autoplay: 0 // 自动播放:时间[ms]
       }
     }
-  },
-  components: {
-    slider
   },
   mounted () {
     let that = this
     setTimeout(function () {
       that.someList = [
         {
-          html: '<div class="slide1">slide1</div>',
+          html: 'slide1',
           style: {
             'background': '#1bbc9b'
           }
@@ -62,17 +58,20 @@ export default {
         {
           html: 'slide2',
           style: {
-            'background': '#4bbfc3'
+            background: '#4bbfc3'
           }
         },
         {
           html: 'slide3',
           style: {
-            'background': '#7baabe'
+            background: '#333'
           }
         }
       ]
     }, 2000)
+  },
+  components: {
+    slider
   },
   methods: {
     turnTo (num) {

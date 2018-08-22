@@ -1,6 +1,10 @@
 中文 | [English](https://github.com/warpcgd/vue-concise-slider/blob/master/README_EN.md)
 
+<<<<<<< HEAD
 ## vue-concise-slider.js
+=======
+## vue-concise-slider
+>>>>>>> master
 
 [![npm](https://img.shields.io/npm/v/vue-concise-slider.svg)](https://www.npmjs.com/package/vue-concise-slider)
 [![npm](https://img.shields.io/npm/dw/vue-concise-slider.svg)](https://www.npmjs.com/package/vue-concise-slider)
@@ -11,6 +15,7 @@
 vue-concise-slider,一个简单的滑动组件,配置简单,支持自适应/全屏+按钮+分页,同时兼容移动端和PC端
 
 ## 版本
+<<<<<<< HEAD
 [v2.2.0](https://github.com/warpcgd/vue-concise-slider/issues/29) 支持vue2.0+
 
 ## 特点
@@ -42,6 +47,41 @@ vue-concise-slider,一个简单的滑动组件,配置简单,支持自适应/全�
   npm install vue-concise-slider --save
 ```
 
+=======
+[v2.4.7](https://github.com/warpcgd/vue-concise-slider/issues/29) 支持vue2.0+
+
+## 特点
+* 简单配置
+* 轻量 (~24kB gzipped)
+* 多种滑动样式
+
+### 目前已实现
+- [x] 全屏自适应
+- [x] 移动端兼容
+- [x] 垂直滚动
+- [x] 定时自动切换
+- [x] 不定宽度滚动
+- [x] 无缝循环滚动
+- [x] 多级滚动
+- [x] 渐变滚动
+- [x] 旋转滚动
+- [x] page中加入自定义组件
+
+### 未来将实现
+- [ ] 分页自定义
+
+### 链接
+
+- [文档](https://warpcgd.github.io/vue-concise-slider/)
+- [demo](https://warpcgd.github.io/vue-concise-slider/demo/)
+
+### 安装
+
+```html
+  npm install vue-concise-slider --save
+```
+
+>>>>>>> master
 ### 如何使用
 
 ```html
@@ -49,7 +89,11 @@ vue-concise-slider,一个简单的滑动组件,配置简单,支持自适应/全�
 <!-- 制作一个框架包裹slider -->
  <div style="width:70%;margin:20px auto;height:400px">
       <!-- 配置slider组件 -->
+<<<<<<< HEAD
       <slider :pages="pages" :sliderinit="sliderinit" @slide='slide' @tap='onTap' @init='onInit'>
+=======
+      <slider ref="slider" :pages="pages" :sliderinit="sliderinit" @slide='slide' @tap='onTap' @init='onInit'>
+>>>>>>> master
           <!-- 设置loading,可自定义 -->
           <div slot="loading">loading...</div>
       </slider>
@@ -85,8 +129,13 @@ export default {
         //Sliding configuration [obj]
         sliderinit: {
           currentPage: 0,
+<<<<<<< HEAD
           thresholdDistance: 500,
           thresholdTime: 100,
+=======
+          thresholdDistance:500,
+          thresholdTime:100,
+>>>>>>> master
           autoplay:1000,
           loop:true,
           direction:'vertical',

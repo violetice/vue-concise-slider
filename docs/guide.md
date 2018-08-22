@@ -13,7 +13,7 @@
 <!-- Make a frame wrapped slider -->
  <div style="width:70%;margin:20px auto;height:400px">
       <!-- Configuring slider components -->
-      <slider :pages="pages" :sliderinit="sliderinit" @slide='slide' @tap='onTap' @init='onInit'>
+      <slider ref="slider" :pages="pages" :sliderinit="sliderinit" @slide='slide' @tap='onTap' @init='onInit'>
           <!-- Set loading -->
           <div slot="loading">loading...</div>
       </slider>
@@ -133,7 +133,11 @@ export default {
 ```html
   <template>
       <div style="width:70%;margin:20px auto;height:400px">
+<<<<<<< HEAD
         <slider :pages="someList" :sliderinit="sliderinit" @slide='slide' @tap='onTap' @init='onInit'>
+=======
+        <slider ref="slider" :pages="someList" :sliderinit="sliderinit" >
+>>>>>>> master
         </slider>
       </div>
   </template>
@@ -188,8 +192,213 @@ export default {
   }
   </script>
 ```
+<<<<<<< HEAD
 
 
 
 
+=======
+## Fade Effect
+
+1.effect set `fade`,and loop set `true`,Openning cycle slip
+
+```html
+  <template>
+      <div style="width:70%;margin:20px auto;height:400px">
+        <slider ref="slider" :pages="someList" :sliderinit="sliderinit" >
+        </slider>
+      </div>
+  </template>
+  <script>
+  import slider from '../components/slider'
+  export default {
+    el: '#sliderbasic',
+    data () {
+      return {
+        // someList
+        someList: [],
+        sliderinit: {
+          effect: 'fade',
+          currentPage: 1,
+          thresholdDistance: 100,
+          thresholdTime: 300,
+          duration: 300,
+          timingFunction: 'ease',
+          loop: true,
+          autoplay: 0
+        }
+      }
+    },
+    mounted () {
+      let that = this
+      setTimeout(function () {
+        // Picture data can be assigned directly to someList
+        that.someList = [
+          {
+            html: '<div class="slide1">slide1</div>',
+            style: {
+              'background': '#1bbc9b'
+            }
+          },
+          {
+            html: 'slide2',
+            style: {
+              'background': '#4bbfc3'
+            }
+          },
+          {
+            html: 'slide3',
+            style: {
+              'background': '#7baabe'
+            }
+          }
+        ]
+      }, 2000)
+    },
+    components: {
+      slider
+    }
+  }
+  </script>
+```
+
+## CoverFlow Effect
+
+1. effect set `coverflow`,and loop set `true`,Openning cycle slip
+2. someList data needs to set at least the width (% or PX)
+
+```html
+  <template>
+      <div style="width:70%;margin:20px auto;height:400px">
+        <slider ref="slider" :pages="someList" :sliderinit="sliderinit" >
+        </slider>
+      </div>
+  </template>
+  <script>
+  import slider from '../components/slider'
+  export default {
+    el: '#sliderbasic',
+    data () {
+      return {
+      someList: [],
+      sliderinit: {
+          effect: 'coverflow',
+          currentPage: 1,
+          tracking: false,
+          thresholdDistance: 100,
+          thresholdTime: 300,
+          deviation: 200,
+          widthScalingRatio: 0.8,
+          heightScalingRatio: 0.8,
+          infinite: 2,
+          slidesToScroll: 1,
+          loop: true
+        }
+      }
+    },
+    mounted () {
+      let that = this
+      setTimeout(function () {
+        // Picture data can be assigned directly to someList
+        that.someList = [
+          {
+            html: '<div class="slide1">slide1</div>',
+            style: {
+              'background': '#1bbc9b'
+            }
+          },
+          {
+            html: 'slide2',
+            style: {
+              'background': '#4bbfc3'
+            }
+          },
+          {
+            html: 'slide3',
+            style: {
+              'background': '#7baabe'
+            }
+          }
+        ]
+      }, 2000)
+    },
+    components: {
+      slider
+    }
+  }
+  </script>
+```
+
+## Pages uses dynamic components
+
+1. The incoming dynamic component attribute 'component' in pages
+
+```html
+  <template>
+      <div style="width:70%;margin:20px auto;height:400px">
+        <slider ref="slider" :pages="someList" :sliderinit="sliderinit">
+        </slider>
+      </div>
+  </template>
+  <script>
+  import slider from '../components/slider'
+  export default {
+    el: '#sliderbasic',
+    data () {
+      return {
+      someList: [],
+      sliderinit: {
+          currentPage: 1,
+          thresholdDistance: 100,
+          thresholdTime: 300,
+          duration: 300,
+          timingFunction: 'ease',
+          loop: true,
+          autoplay: 0
+        }
+      }
+    },
+    mounted () {
+      let that = this
+      setTimeout(function () {
+        that.someList = [
+        {
+          // If component is true, this HTML item is invalid
+          html: '<div class="slide1">slide1</div>',
+          style: {
+            'background': '#1bbc9b'
+          },
+          component: {
+            props: ['item', 'sliderinit', 'pages'],
+            data() {
+              return {
+                //img src
+                img: 'xxxxx.jpg'
+              }
+            },
+            template: `<div><img :src="img" /><p>test</p>...</div>`
+          }
+        },
+        {
+          html: 'slide2',
+          style: {
+            'background': '#4bbfc3'
+          }
+        },
+        {
+          html: 'slide3',
+          style: {
+            'background': '#7baabe'
+          }
+        }
+      ]
+      }, 2000)
+    },
+    components: {
+      slider
+    }
+  }
+  </script>
+```
+>>>>>>> master
 

@@ -54,12 +54,44 @@ The style pattern that works directly on each item can output background maps, b
   }
 ```
 
+### component
+
+- Type: `object`
+- Default value: `null`
+
+For the extension of each page page, you can customize the component template , and use props in the component
+
+* item : per pages
+* sliderinit: slider configuration
+* pages: array of slider list
+
+```html
+  {
+    component: {
+      props: ['item', 'sliderinit', 'pages'],
+      data () {
+        return {
+          img: 'src/img/testimg-1.jpg'
+        }
+      },
+      mounted () {
+        console.log(this.item)
+      },
+      template: '<div><img style="width: 100%" :src="img" /><p style="position: absolute; margin: 0; right: 10px; bottom: 10px; font-size: 16px;">test1</p></div>'
+    }
+  }
+```
+
 ## sliderinit
 
 - Type: `Object`
 - Default value: `null`
 
+<<<<<<< HEAD
 Sliding configuration
+=======
+Slider configuration
+>>>>>>> master
 
 ```html
   {
@@ -73,6 +105,21 @@ Sliding configuration
     slidesToScroll:1
   }
 ```
+<<<<<<< HEAD
+=======
+### effect
+
+- Type: `string`
+- Default value: `slide`
+
+Switching effect,it Could be 'slide','fade','coverflow'
+
+```html
+  {
+    effect:'slide'
+  }
+```
+>>>>>>> master
 
 ### direction
 
@@ -103,26 +150,42 @@ Initing current Page of slider
 ### thresholdDistance
 
 - Type: `number`
+<<<<<<< HEAD
 - Default value: `null`
+=======
+- Default value: `100`
+>>>>>>> master
 
 Minimal distance (in px) to trigger swipe to next/previous slide during swipes
 
 ```html
   {
+<<<<<<< HEAD
     thresholdDistance:''
+=======
+    thresholdDistance:'100'
+>>>>>>> master
   }
 ```
 
 ### thresholdTime
 
 - Type: `number`
+<<<<<<< HEAD
 - Default value: `null`
+=======
+- Default value: `500`
+>>>>>>> master
 
 Minimal duration (in ms) to trigger swipe to next/previous slide during swipes
 
 ```html
   {
+<<<<<<< HEAD
     thresholdTime:''
+=======
+    thresholdTime:'500'
+>>>>>>> master
   }
 ```
 
@@ -214,6 +277,46 @@ Sliding mode
     timingFunction: 'ease'
   }
 ```
+<<<<<<< HEAD
+=======
+
+### widthScalingRatio
+
+- Type: `string`
+- Default value: `0.8`
+
+Coverflow mode configuration width scale scaling, range 0~1
+
+```html
+  {
+    widthScalingRatio: '0.8'
+  }
+```
+### heightScalingRatio
+
+- Type: `string`
+- Default value: `0.8`
+
+Coverflow mode configuration hight scale scaling, range 0~1
+
+```html
+  {
+    heightScalingRatio: '0.8'
+  }
+```
+### deviation
+
+- Type: `string`
+- Default value: `200`
+
+Configuration of sliding item offset in coverflow mode
+
+```html
+  {
+    deviation: '200'
+  }
+```
+>>>>>>> master
 ## Transitive events
 
 
@@ -225,7 +328,11 @@ Sliding to (number) page
 
 ```html
   slideTo () {
+<<<<<<< HEAD
     this.$children[0].$emit('slideTo', num)
+=======
+    this.$refs.slider.$emit('slideTo', num)
+>>>>>>> master
   }
 
 ```
@@ -237,7 +344,11 @@ Sliding to the next page
 
 ```html
   slideNext () {
+<<<<<<< HEAD
     childComponents.$emit('slideNext')
+=======
+    this.$refs.slider.$emit('slideNext')
+>>>>>>> master
   }
 
 ```
@@ -250,7 +361,11 @@ Sliding to the previous page
 
 ```html
   slide () {
+<<<<<<< HEAD
     childComponents.$emit('slidePre')
+=======
+    this.$refs.slider.$emit('slidePre')
+>>>>>>> master
   }
 
 ```
@@ -262,7 +377,11 @@ Sliding to the previous page
 Opening timing carousel,Setting the carousel time
 
 ```html
+<<<<<<< HEAD
   childComponents.$emit('autoplayStart',1000)
+=======
+  this.$refs.slider.$emit('autoplayStart',1000)
+>>>>>>> master
 ```
 
 ### autoplayStop
@@ -272,7 +391,11 @@ Opening timing carousel,Setting the carousel time
 Pause timing carousel
 
 ```html
+<<<<<<< HEAD
   childComponents.$emit('autoplayStop')
+=======
+  this.$refs.slider.$emit('autoplayStop')
+>>>>>>> master
 ```
 
 ## Monitoring events

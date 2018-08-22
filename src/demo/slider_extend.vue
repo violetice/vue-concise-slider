@@ -30,7 +30,7 @@
 <script>
 import slider from '../components/slider'
 export default {
-  el: '#slidervertical',
+  el: '#sliderExtend',
   data () {
     return {
       someList: [],
@@ -39,10 +39,8 @@ export default {
         tracking: false,
         thresholdDistance: 100, // 滑动距离阈值判定
         thresholdTime: 300, // 滑动时间阈值判定
-        direction: 'vertical', // 垂直滚动
-        loop: true, // 无限循环
-        infinite: 4
-        // autoplay:1000 // 自动播放:时间[ms]
+        loop: false // 无限循环
+        // autoplay:1000,//自动播放:时间[ms]
       }
     }
   },
@@ -57,18 +55,55 @@ export default {
           html: '<div class="slide1">slide1</div>',
           style: {
             'background': '#1bbc9b'
+          },
+          // 对slider的扩展，如果需要对某一页banner添加说明或其他不同的需求，可以通过定义component来进行扩展
+          component: {
+            props: ['item', 'sliderinit', 'pages'],
+            data () {
+              return {
+                img: 'src/img/testimg-1.jpg'
+              }
+            },
+            mounted () {
+              console.log(this.item)
+            },
+            template: '<div><img style="width: 100%" :src="img" /><p style="position: absolute; margin: 0; right: 10px; bottom: 10px; font-size: 16px;">test1</p></div>'
           }
         },
         {
           html: 'slide2',
           style: {
             'background': '#4bbfc3'
+          },
+          component: {
+            props: ['item', 'sliderinit', 'pages'],
+            data () {
+              return {
+                img: 'src/img/testimg-2.jpg'
+              }
+            },
+            mounted () {
+              console.log(this.item)
+            },
+            template: '<div><img style="width: 100%" :src="img" /><p style="position: absolute; margin: 0; right: 10px; bottom: 10px; font-size: 16px;">test2</p></div>'
           }
         },
         {
           html: 'slide3',
           style: {
             'background': '#7baabe'
+          },
+          component: {
+            props: ['item', 'sliderinit', 'pages'],
+            data () {
+              return {
+                img: 'src/img/testimg-3.jpg'
+              }
+            },
+            mounted () {
+              console.log(this.item)
+            },
+            template: '<div><img style="width: 100%" :src="img" /><p style="position: absolute; margin: 0; right: 10px; bottom: 10px; font-size: 16px;">test3</p></div>'
           }
         }
       ]
@@ -95,14 +130,6 @@ export default {
       this.$refs.slider.$emit('autoplayStop')
       // slider.$emit('slidePre')
     },
-    loadingShow () {
-      this.$refs.slider.$emit('loadingShow')
-      // slider.$emit('slidePre')
-    },
-    loadingHide () {
-      this.$refs.slider.$emit('loadingHide')
-      // slider.$emit('slidePre')
-    },
     appendslider () {
       this.someList.push({
         html: 'slidernew',
@@ -111,6 +138,14 @@ export default {
           color: '#fff'
         }
       })
+    },
+    loadingShow () {
+      this.$refs.slider.$emit('loadingShow')
+      // slider.$emit('slidePre')
+    },
+    loadingHide () {
+      this.$refs.slider.$emit('loadingHide')
+      // slider.$emit('slidePre')
     },
     // 监听事件发生了变化,需要指向一个子组件实例
     slide (data) {
